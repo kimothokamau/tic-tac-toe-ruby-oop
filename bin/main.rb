@@ -1,6 +1,13 @@
 #!/usr/bin/env ruby
 puts 'Welcome to Tic-Tac-Toe'
 
+class Player
+  def initialize(name, token)
+    @name = name
+    @token = token
+  end
+
+
 puts 'Player 1: please enter your name'
 
 player1 = gets.chomp
@@ -29,7 +36,7 @@ puts "#{player2} your token will be o"
 
 puts '------------------------------------'
 
-puts "#{player1} please select your move"
+
 # here we call de position_change method to insert the playes's input into the board
 display_board(board)
 puts 'this is the current state of the board, next player'
@@ -52,8 +59,18 @@ display_board(board)
 puts 'this is the current state of the board, next player'
 
 # in case one of the players accomplishes a winning pattern
-puts " contratulations #{player}!!! you've won the game"
+puts " congratulations #{player1}!!! you've won the game"
 
 # in case the board is full and none of the players win
 puts 'wheww! we\'ve got a tie here! let\'s start all over again!'
 # here we would call an init function to restart the game
+
+def game_play
+  limit = true
+  counter = 0
+  while limit
+    puts "#{player} please select your move:"
+    
+  
+
+end
