@@ -1,14 +1,7 @@
-# rubocop: disable Metrics/CyclomaticComplexity
-
 class TicTacToe
   def initialize
     @board = Array.new(9, ' ')
-    @turn_count = turn_count
   end
-
-  WIN_COMBINATIONS = [
-    [0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]
-  ].freeze
 
   def display_board
     puts ' '
@@ -25,96 +18,47 @@ class TicTacToe
     display_board
   end
 
-  def input_to_index(user_input)
-    user_input.to_i
-  end
-
-  def move(input_to_index, current_player)
-    @board[input_to_index] = current_player
-  end
-
-  def position_taken?(index)
-    @board[index] == 'X' || @board[index] == 'O'
-  end
-
-  def valid_move?(index)
-    !position_taken?(index) && (0..8).include?(index)
-  end
-
-  def turn_count
-    count = 0
-    @board.each do |i|
-      count += 1 if %w[X O].include?(i)
-    end
-    count
-  end
-
-  def current_player
-    if turn_count.even?
+  def dummy_player
+    if @play_count < 19
       'X'
     else
       'O'
     end
+  end
+
+  def turn2
+    @play_count = 0
+    player = 'O'
+    intro
+    while @play_count < 10
+      puts "Player #{player}, please enter a number between 0 and 8"
+      user_input = gets.chomp
+      puts "Player #{player},  invalid move, you entered #{user_input} try again"
+      user_input = gets.chomp
+      display_board
+      puts "Player #{player}, valid move, you entered #{user_input}!"
+      @play_count += 1
+    end
+    puts "Play again #{player}, you drew :("
   end
 
   def turn
-    player = current_player
-    puts "Player #{player}, please enter a number between 0 and 8"
-    user_input = gets.chomp
-    index = input_to_index(user_input)
-    if valid_move?(index)
-      move(index, player)
-      @board[index] = player
+    @play_count = 0
+    player = 'X'
+    intro
+    while @play_count < 10
+      puts "Player #{player}, please enter a number between 0 and 8"
+      user_input = gets.chomp
+      puts "Player #{player},  invalid move, you entered #{user_input} try again"
+      user_input = gets.chomp
       display_board
-      puts "Hey player #{player}, you selected #{index} and its turn #{turn_count}"
-    else
-      puts 'Please try again and enter a valid number'
+      puts "Player #{player}, valid move, you entered #{user_input}!"
+      @play_count += 1
     end
-  end
-
-  def won?
-    WIN_COMBINATIONS.select do |combination|
-      choice1 = @board[combination[0]]
-      choice2 = @board[combination[1]]
-      choice3 = @board[combination[2]]
-      return combination if choice1 == 'X' && choice2 == 'X' && choice3 == 'X'
-      return combination if choice1 == 'O' && choice2 == 'O' && choice3 == 'O'
-    end
-    false
-  end
-
-  def full?
-    @board.all? { |i| i != ' ' && !i.nil? }
-  end
-
-  def draw?
-    full? && !won?
-  end
-
-  def over?
-    draw? || won?
-  end
-
-  def winner
-    combination = won?
-    return unless combination
-
-    if combination.all? { |i| @board[i] == 'X' }
-      'X'
-    elsif combination.all? { |i| @board[i] == 'O' }
-      'O'
-    end
-  end
-
-  def play
-    turn until over?
-    if won?
-      puts "Congratulations player #{winner}, you won!"
-    else
-      puts 'Its a draw, play again!'
-    end
+    puts "Congratulations #{player}, you have won!"
+    turn2
   end
 end
-# rubocop: enable Metrics/CyclomaticComplexity
-ticytoe = TicTacToe.new
-ticytoe.play
+
+tic_tac_toe = TicTacToe.new
+tic_tac_toe.turn
