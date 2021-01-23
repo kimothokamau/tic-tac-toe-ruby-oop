@@ -1,64 +1,37 @@
-class TicTacToe
-  def initialize
-    @board = Array.new(9, ' ')
-  end
+#!/usr/bin/env ruby
+require_relative '../lib/logic.rb'
 
-  def display_board
-    puts ' '
-    puts " #{@board[0]} | #{@board[1]} | #{@board[2]} "
-    puts ' ---------- '
-    puts " #{@board[3]} | #{@board[4]} | #{@board[5]} "
-    puts ' ---------- '
-    puts " #{@board[6]} | #{@board[7]} | #{@board[8]} "
-    puts ' '
-  end
+def intro
+  puts 'Welcome to the Tic-Tac-Toe Game!'
+  display_board
+end
 
-  def intro
-    puts 'Welcome to the Tic-Tac-Toe Game!'
+def turn
+  player = current_player
+  puts "Player #{player}, please enter a number between 0 and 8"
+  user_input = gets.chomp
+  index = input_to_index(user_input)
+  if valid_move?(index)
+    move(index, player)
+    @board[index] = player
     display_board
+    puts "Hey player #{player}, you selected #{index} and its turn #{turn_count}"
+  else
+    puts 'Please try again and enter a valid number'
   end
+end
 
-  def dummy_player
-    if @play_count < 19
-      'X'
-    else
-      'O'
-    end
-  end
+public
 
-  def turn2
-    @play_count = 0
-    player = 'O'
-    intro
-    while @play_count < 10
-      puts "Player #{player}, please enter a number between 0 and 8"
-      user_input = gets.chomp
-      puts "Player #{player},  invalid move, you entered #{user_input} try again"
-      user_input = gets.chomp
-      display_board
-      puts "Player #{player}, valid move, you entered #{user_input}!"
-      @play_count += 1
-    end
-    puts "Play again #{player}, you drew :("
-  end
-
-  def turn
-    @play_count = 0
-    player = 'X'
-    intro
-    while @play_count < 10
-      puts "Player #{player}, please enter a number between 0 and 8"
-      user_input = gets.chomp
-      puts "Player #{player},  invalid move, you entered #{user_input} try again"
-      user_input = gets.chomp
-      display_board
-      puts "Player #{player}, valid move, you entered #{user_input}!"
-      @play_count += 1
-    end
-    puts "Congratulations #{player}, you have won!"
-    turn2
+def play
+  intro
+  turn until over?
+  if won?
+    puts "Congratulations player #{winner}, you won!"
+  else
+    puts 'Its a draw, play again!'
   end
 end
 
 tic_tac_toe = TicTacToe.new
-tic_tac_toe.turn
+tic_tac_toe.play
