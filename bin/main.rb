@@ -1,4 +1,4 @@
-# frozen_string_literal: true
+# rubocop: disable Metrics/CyclomaticComplexity
 
 class TicTacToe
   def initialize
@@ -77,11 +77,8 @@ class TicTacToe
       choice1 = @board[combination[0]]
       choice2 = @board[combination[1]]
       choice3 = @board[combination[2]]
-      if choice1 == 'X' && choice2 == 'X' && choice3 == 'X'
-        return combination
-      elsif choice1 == 'O' && choice2 == 'O' && choice3 == 'O'
-        return combination
-      end
+      return combination if choice1 == 'X' && choice2 == 'X' && choice3 == 'X'
+      return combination if choice1 == 'O' && choice2 == 'O' && choice3 == 'O'
     end
     false
   end
@@ -100,12 +97,12 @@ class TicTacToe
 
   def winner
     combination = won?
-    if combination
-      if combination.all? { |i| @board[i] == 'X' }
-        'X'
-      elsif combination.all? { |i| @board[i] == 'O' }
-        'O'
-      end
+    return unless combination
+
+    if combination.all? { |i| @board[i] == 'X' }
+      'X'
+    elsif combination.all? { |i| @board[i] == 'O' }
+      'O'
     end
   end
 
@@ -118,6 +115,6 @@ class TicTacToe
     end
   end
 end
-
+# rubocop: enable Metrics/CyclomaticComplexity
 ticytoe = TicTacToe.new
 ticytoe.play
