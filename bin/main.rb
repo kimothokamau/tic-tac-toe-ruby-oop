@@ -2,6 +2,16 @@
 require_relative '../lib/game_logic.rb'
 require 'colorize'
 
+def display_board
+  puts ' '
+  puts " #{@board[0]} | #{@board[1]} | #{@board[2]} "
+  puts ' ---------- '
+  puts " #{@board[3]} | #{@board[4]} | #{@board[5]} "
+  puts ' ---------- '
+  puts " #{@board[6]} | #{@board[7]} | #{@board[8]} "
+  puts ' '
+end
+
 def intro
   puts 'Welcome to the Tic-Tac-Toe Game!'.green
   display_board
