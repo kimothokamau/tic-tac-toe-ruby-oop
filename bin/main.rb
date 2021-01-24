@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
 require_relative '../lib/game_logic.rb'
 require 'colorize'
+require 'pry'
 
 def display_board
   puts ' '
