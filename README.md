@@ -12,9 +12,9 @@ To have a local version of this code running do the following:
 
 - Ruby
 
-<!-- ## Live Demo
+## Live Demo
 
-[Live Demo Link](https://repl.it/@kkamau/FarawayTemptingPlots#main.rb) -->
+[Live Demo Link](https://repl.it/@kkamau/TicTacToeRubyGame#main.rb)
 
 ## Authors
 
