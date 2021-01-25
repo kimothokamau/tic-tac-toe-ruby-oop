@@ -1,8 +1,10 @@
 # rubocop: disable Metrics/CyclomaticComplexity
+require_relative 'board'
 
 class TicTacToe
   def initialize
-    @board = Array.new(9, ' ')
+    h = Board.new
+    @board = h.board
     @turn_count = turn_count
   end
 
