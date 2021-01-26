@@ -24,7 +24,7 @@ To have a local version of this code running do the following:
 
 ## Live Demo
 
-[Live Demo Link](https://repl.it/@kkamau/TicTacToeRubyGame#main.rb)
+[Live Demo Link](https://repl.it/@kkamau/NoteworthyPreciousGnudebugger#main.rb)
 
 ## Screenshot
 ![Screenshot_TicTacToeRubyGame](https://user-images.githubusercontent.com/52353182/105750233-1b769500-5f0a-11eb-89d3-512156918261.png)
